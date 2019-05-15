@@ -104,7 +104,7 @@ function UserDAO(db) {
     // This is the good one, see the next function
     this.getUserById = function(userId, callback) {
         usersCol.findOne({
-            _id: parseInt(userId)
+            _id: parseInt(userId, 10)
         }, callback);
     };
 

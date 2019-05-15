@@ -21,9 +21,9 @@ function ContributionsHandler(db) {
 
         /*jslint evil: true */
         // Insecure use of eval() to parse inputs
-        var preTax = eval(req.body.preTax);
-        var afterTax = eval(req.body.afterTax);
-        var roth = eval(req.body.roth);
+        var preTax = eval(parseInt(req.body.preTax, 10));
+        var afterTax = eval(parseInt(req.body.afterTax, 10));
+        var roth = eval(parseInt(req.body.roth, 10));
 
         /*
         //Fix for A1 -1 SSJS Injection attacks - uses alternate method to eval
@@ -31,7 +31,7 @@ function ContributionsHandler(db) {
         var afterTax = parseInt(req.body.afterTax);
         var roth = parseInt(req.body.roth);
         */
-        var userId = req.session.userId;
+        var userId = parseInt(req.session.userId, 10);
 
         //validate contributions
         if (isNaN(preTax) || isNaN(afterTax) || isNaN(roth) || preTax < 0 || afterTax < 0 || roth < 0) {
